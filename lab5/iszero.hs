@@ -1,6 +1,6 @@
 iszero :: Int -> String
-iszero 0 = "yes"
-iszero x = "no"
+iszero 0 = "Zero"
+iszero x = "not Zero"
 main :: IO ()
 main = do
 
