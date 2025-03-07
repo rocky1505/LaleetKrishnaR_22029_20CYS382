@@ -1,0 +1,18 @@
+fn calculate_average(temps: &[i32]) -> f64 {
+    let sum: i32 = temps.iter().sum();
+    sum as f64 / temps.len() as f64
+}
+
+fn main() {
+    let temperatures = [22, 24, 19, 17, 21, 23, 20];
+
+    // Slice the last three days' temperatures
+    let last_three_days = &temperatures[4..7];
+    let avg = calculate_average(last_three_days);
+
+    println!("Average temperature of last 3 days: {}", avg);
+
+    // This would cause an error because the slice is out of bounds:
+    // let out_of_bounds = &temperatures[7..8];
+}
+

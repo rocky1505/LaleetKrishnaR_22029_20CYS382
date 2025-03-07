@@ -1,0 +1,16 @@
+fn extract_word<'a>(sentence: &'a str, word: &str) -> &'a str {
+    if let Some(start_index) = sentence.find(word) {
+        &sentence[start_index..start_index + word.len()]
+    } else {
+        ""
+    }
+}
+
+fn main() {
+    let sentence = String::from("Rust is fast and safe.");
+    let word = "Rust";
+
+    let extracted_word = extract_word(&sentence, word);
+    println!("Extracted word: {}", extracted_word);
+}
+

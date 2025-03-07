@@ -1,0 +1,46 @@
+struct BankAccount {
+    account_number: u32,
+    owner_name: String,
+    balance: f64,
+}
+
+impl BankAccount {
+    fn new(account_number: u32, owner_name: &str, balance: f64) -> BankAccount {
+        BankAccount {
+            account_number,
+            owner_name: owner_name.to_string(),
+            balance,
+        }
+    }
+
+    fn view_balance(&self) -> f64 {
+        self.balance
+    }
+
+    fn deposit(&mut self, amount: f64) {
+        self.balance += amount;
+    }
+
+    fn withdraw(&mut self, amount: f64) {
+        if self.balance >= amount {
+            self.balance -= amount;
+        } else {
+            println!("Insufficient funds.");
+        }
+    }
+}
+
+fn main() {
+    let mut account = BankAccount::new(1234, "John Doe", 1000.0);
+
+    // Borrowing immutably
+    println!("Balance: {}", account.view_balance());
+
+    // Borrowing mutably to modify the balance
+    account.deposit(500.0);
+    println!("After deposit, balance: {}", account.view_balance());
+
+    account.withdraw(200.0);
+    println!("After withdrawal, balance: {}", account.view_balance());
+}
+

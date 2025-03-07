@@ -1,0 +1,40 @@
+struct Student {
+    name: String,
+    age: u32,
+    grade: char,
+}
+
+impl Student {
+    fn new(name: &str, age: u32, grade: char) -> Student {
+        Student {
+            name: name.to_string(),
+            age,
+            grade,
+        }
+    }
+
+    fn display(&self) {
+        println!("Name: {}, Age: {}, Grade: {}", self.name, self.age, self.grade);
+    }
+
+    fn update_grade(&mut self, new_grade: char) {
+        self.grade = new_grade;
+    }
+}
+
+fn main() {
+    let mut students: Vec<Student> = Vec::new();
+
+    students.push(Student::new("Alice", 20, 'A'));
+    students.push(Student::new("Bob", 22, 'B'));
+
+    // Borrowing for display (immutable reference)
+    for student in &students {
+        student.display();
+    }
+
+    // Borrowing mutably to update grade
+    students[0].update_grade('A');
+    students[0].display();
+}
+
